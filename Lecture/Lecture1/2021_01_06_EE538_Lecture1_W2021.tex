@@ -725,7 +725,7 @@ Operation}\label{lecture-1---mos-physics-and-operation}}
     \begin{itemize}
 \tightlist
 \item
-  MOSFET: \textbf{Metal}-\_\_O\_\_xide-\_\_S\_\_emiconductor
+  MOSFET: \_\_M\_\_etal-\_\_O\_\_xide-\_\_S\_\_emiconductor
   \_\_F\_\_ield \_\_E\_\_ffect \_\_T\_\_ransistor
 \item
   CMOS: \_\_C\_\_omplementary \textbf{MOS} (NMOS and PMOS in a single
@@ -898,7 +898,7 @@ I_d \int_0^L{dy} &= \mu \cdot C_{ox} \cdot W  \int_0^{V_{ds}}{[V_{gs} - V_{th} -
 \item
   When the potential near the drain region is high enough such that
   \(V_{gd} = V_{gs} - V_{ds} < V_{th}\), the inversion charge becomes
-  zero
+  zero (a phenomenon known as ``pinch-off'')
 \end{itemize}
 
     \hypertarget{first-order-i-v-characteristics-revisited}{%
@@ -1230,7 +1230,7 @@ g_m = \dfrac{2I_d}{(V_{gs} - V_{th})} = \dfrac{2I_D}{V_{OV}}
   drain grows, decreasing the effective channel length
 \item
   The reduced channel length increases the drain current, resulting in a
-  positive slope of \(I_d\) vs \(V_{ds}\)\\
+  positive slope of \(I_d\) vs \(V_{ds}\)
 \item
   The effect is more pronounced for shorter gate lengths, due to the
   larger ratio \(\Delta L / L\)
@@ -1261,6 +1261,65 @@ modulation}\label{square-law-model-with-channel-length-modulation}}
 \boxed{I_d = \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs}-V_{th})^2 (1+\lambda V_{ds})}
 \end{equation}
 
+    \hypertarget{intrinsic-gain}{%
+\subsection{Intrinsic gain}\label{intrinsic-gain}}
+
+    
+
+    \begin{equation}
+g_m = \dfrac{2I_D}{V_{OV}}
+\end{equation}
+
+\begin{equation}
+r_o = \dfrac{1}{g_{ds}} = \dfrac{1}{\lambda I_D}
+\end{equation}
+
+\begin{equation}
+\left|\dfrac{v_{ds}}{v_{gs}}\right| = \dfrac{g_m}{g_{ds}} = \dfrac{2}{V_{OV}}
+\end{equation}
+
+    \begin{itemize}
+\tightlist
+\item
+  The dependence of \(I_d\) on \(V_{ds}\) is modeled as a resistance
+  \(r_o\), referred to as the transistor output impedance, which is
+  linearly dependent on \(I_d\)
+\item
+  The product \(g_m \cdot r_o\) is called the intrinsic gain of the
+  MOSFET, which is, to first order, independent of drain current
+\item
+  As we will see, intrinsic gain is a fundamental device property that
+  affects a number of circuit performance metrics (e.g.~voltage gain)
+\end{itemize}
+
+    \hypertarget{level-1-nmospmos-spice-models}{%
+\subsection{Level 1 NMOS/PMOS SPICE
+models}\label{level-1-nmospmos-spice-models}}
+
+    \begin{longtable}[]{@{}crcc@{}}
+\toprule
+NMOS Model & & &\tabularnewline
+\midrule
+\endhead
+LEVEL = 1 & VTO = 0.7 & GAMMA = 0.45 & PHI = 0.9\tabularnewline
+NSUB = 9e+14 & LD = 0.08e-6 & UO = 350 & LAMBDA = 0.1\tabularnewline
+TOX = 9e-9 & PB = 0.9 & CJ = 0.56e-3 & CJSW = 0.35e-11\tabularnewline
+MJ = 0.45 & MJSW = 0.2 & CGDO = 0.4e-9 & JS = 1.0e-8\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}crcc@{}}
+\toprule
+PMOS Model & & &\tabularnewline
+\midrule
+\endhead
+LEVEL = 1 & VTO = -0.8 & GAMMA = 0.4 & PHI = 0.8\tabularnewline
+NSUB = 5e+14 & LD = 0.09e-6 & UO = 100 & LAMBDA = 0.2\tabularnewline
+TOX = 9e-9 & PB = 0.9 & CJ = 0.94e-3 & CJSW = 0.32e-11\tabularnewline
+MJ = 0.5 & MJSW = 0.3 & CGDO = 0.3e-9 & JS = 0.5e-8\tabularnewline
+\bottomrule
+\end{longtable}
+
     \hypertarget{comments-on-models}{%
 \subsection{Comments on models}\label{comments-on-models}}
 
@@ -1284,6 +1343,30 @@ modulation}\label{square-law-model-with-channel-length-modulation}}
 \end{itemize}
 
 \emph{Use the simplest model that is accurate enough for the task}
+
+    \hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+    \begin{itemize}
+\tightlist
+\item
+  Long-channel ``square-law'' model provides an intuitive picture of MOS
+  device operation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(g_m\) linearly dependent on \(I_d\) if \(V_{gs} - V_{th}\) is
+    constant
+  \item
+    \(r_o\) inversely dependent on \(I_d\)
+  \item
+    Intrinsic gain \(g_m \cdot r_o\) independent of \(I_d\)
+  \end{itemize}
+\item
+  Small-signal model will be used to design circuits with specific gain
+  and impedance characteristics
+\end{itemize}
 
 
     % Add a bibliography block to the postdoc
