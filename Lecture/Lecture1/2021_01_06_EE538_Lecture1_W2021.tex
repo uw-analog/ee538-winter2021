@@ -672,7 +672,7 @@ Design}\label{ee-538-analog-integrated-circuit-design}}
 \subsection{Python packages/modules}\label{python-packagesmodules}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
 \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k+kn}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
@@ -720,7 +720,11 @@ Operation}\label{lecture-1---mos-physics-and-operation}}
     \hypertarget{mos-transistor}{%
 \subsection{MOS transistor}\label{mos-transistor}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_structure.png}
+\caption{MOS\_structure.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -740,15 +744,23 @@ Operation}\label{lecture-1---mos-physics-and-operation}}
     \hypertarget{nmos-operation}{%
 \subsection{NMOS operation}\label{nmos-operation}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{NMOS_operation.png}
+\caption{NMOS\_operation.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
 \item
-  Inversion layer forms as minority carriers are drawn from bulk to
-  interface
+  In the absence of an applied gate-source voltage (\(V_{gs}\)), the
+  charge concentration under the gate is dominated by \emph{majority}
+  carriers (holes for an NMOS)
 \item
-  Threshold voltage (\(V_{th}\)) defined as the \(V_{GS}\) value at
+  An \emph{inversion layer} begins to form as minority carriers are
+  drawn from bulk to interface for \(V_{gs} > 0\)
+\item
+  Threshold voltage (\(V_{th}\)) is defined as the \(V_{gs}\) value at
   which the minority carrier (electron) concentration equals that of the
   majority carriers (holes)
 \end{itemize}
@@ -756,34 +768,34 @@ Operation}\label{lecture-1---mos-physics-and-operation}}
     \hypertarget{nmos-operation}{%
 \subsection{NMOS operation}\label{nmos-operation}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{NMOS_operation.png}
+\caption{NMOS\_operation.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
 \item
-  Current is controlled by the mobile charge in the channel
+  Current is controlled by the velocity of mobile charge in the channel
 \item
-  Vertical electric field controls charge density
+  Vertical electric field (\(E_{vert}\)) controls charge density
 \item
   Carrier velocity proportional to lateral electric field
-  (\(v=\mu E_{lateral}\))
+  (\(v=\mu E_{lat}\))
 \item
-  Goal: Calculate drain current as a function of \(V_{gs}\) and
+  Our goal: Calculate drain current as a function of \(V_{gs}\) and
   \(V_{ds}\)
 \end{itemize}
 
-    \hypertarget{vertical-field}{%
-\subsection{Vertical field}\label{vertical-field}}
+    \hypertarget{vertical-electric-field}{%
+\subsection{Vertical electric field}\label{vertical-electric-field}}
 
-    
-
-    \begin{equation}
-C_{ox} = \dfrac{\epsilon_{ox}}{t_{ox}}
-\end{equation}
-
-\begin{equation}
-Q(y) = C_{ox}[V_{gs} - V_{th} - V(y)]
-\end{equation}
+    \begin{figure}
+\centering
+\includegraphics{MOS_vertical_field.png}
+\caption{MOS\_vertical\_field.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -791,54 +803,76 @@ Q(y) = C_{ox}[V_{gs} - V_{th} - V(y)]
   \(C_{ox}\): Oxide capacitance, in \(F/m^2\)
 \item
   Charge per unit area, \(Q(y)\), depends on \(V_{gs} - V_{th}\),
-  \(\epsilon_{ox}\), and \(t_{ox}\)
-\item
-  Vertical electric field controls charge density
+  \(\epsilon_{ox}\), and \(t_{ox}\):
 \end{itemize}
 
-    \hypertarget{lateral-field}{%
-\subsection{Lateral field}\label{lateral-field}}
-
-    
-
-    \begin{equation}
-I = Q(y) \cdot v
-\end{equation}
-
 \begin{equation}
-v = \mu \cdot E
-\end{equation}
+Q(y) = C_{ox}[V_{gs} - V_{th} - V(y)] = \dfrac{\epsilon_{ox}}{t_{ox}}[V_{gs} - V_{th} - V(y)]
+\end{equation} - Vertical electric field controls channel charge density
 
-\begin{equation}
-E = \dfrac{dV(y)}{dy}
-\end{equation}
+    \hypertarget{lateral-electric-field}{%
+\subsection{Lateral electric field}\label{lateral-electric-field}}
+
+    \begin{figure}
+\centering
+\includegraphics{MOS_lateral_field.png}
+\caption{MOS\_lateral\_field.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
 \item
-  Current controlled by charge density, mobility, and applied voltage
+  Current is controlled by charge density, mobility, and applied
+  voltage:
+\end{itemize}
+
+\begin{align}
+I &= Q(y) \cdot v\\
+&= Q(y) \cdot \mu \cdot E_{lat} \\
+&= Q(y) \cdot \mu \cdot \dfrac{dV(y)}{dy}
+\end{align}
+
+\begin{itemize}
+\tightlist
 \item
-  Lateral electric field controls charge velocity
+  While the vertical electric field controls charge density, the lateral
+  electric field controls charge velocity
 \end{itemize}
 
     \hypertarget{first-order-i-v-characteristics}{%
 \subsection{First-order I-V
 characteristics}\label{first-order-i-v-characteristics}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_IV_cross_section.png}
+\caption{MOS\_IV\_cross\_section.png}
+\end{figure}
 
-    \begin{equation}
+    \begin{itemize}
+\tightlist
+\item
+  Charge density and velocity:
+\end{itemize}
+
+\begin{equation}
 Q_n(y) = C_{ox}[V_{gs} - V_{th} - V(y)]
 \end{equation}
 
 \begin{equation}
-v = \mu \cdot E
+v = \mu \cdot E_{lat}
 \end{equation}
+
+    \begin{itemize}
+\tightlist
+\item
+  Resulting drain current:
+\end{itemize}
 
 \begin{align}
 I_d &= Q_n \cdot v \cdot W \\
 \\
-&= C_{ox}[V_{gs} - V_{th} - V(y)] \cdot \mu \cdot E \cdot W \\
+&= C_{ox}[V_{gs} - V_{th} - V(y)] \cdot \mu \cdot E_{lat} \cdot W \\
 \end{align}
 
     \hypertarget{mos-i-v-derivation}{%
@@ -857,11 +891,20 @@ I_d \int_0^L{dy} &= \mu \cdot C_{ox} \cdot W  \int_0^{V_{ds}}{[V_{gs} - V_{th} -
 \begin{itemize}
 \tightlist
 \item
-  Let's plot this function\ldots{}
+  Drain current is the product of chrage density and velocity
+\item
+  Due to the variation in potential from source to drain, charge density
+  must be integrated to determine the drain current
+\item
+  Let's plot the resulting function\ldots{}
 \end{itemize}
 
+    \hypertarget{first-order-i-v-characteristic}{%
+\subsection{First-order I-V
+characteristic}\label{first-order-i-v-characteristic}}
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{u\PYZus{}n} \PY{o}{=} \PY{l+m+mi}{350}                 \PY{c+c1}{\PYZsh{} electron mobility (device parameter)}
 \PY{n}{e\PYZus{}ox} \PY{o}{=} \PY{l+m+mf}{3.9}\PY{o}{*}\PY{l+m+mf}{8.854e\PYZhy{}12}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{;} \PY{c+c1}{\PYZsh{} relative permittivity}
@@ -871,21 +914,21 @@ I_d \int_0^L{dy} &= \mu \cdot C_{ox} \cdot W  \int_0^{V_{ds}}{[V_{gs} - V_{th} -
 \PY{n}{W} \PY{o}{=} \PY{l+m+mi}{100}                   \PY{c+c1}{\PYZsh{} device width in microns}
 \PY{n}{L} \PY{o}{=} \PY{l+m+mi}{1}                     \PY{c+c1}{\PYZsh{} device length in microns}
 
-\PY{n}{V\PYZus{}ds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{2.7}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{V\PYZus{}ds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{2.65}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
 \PY{n}{V\PYZus{}gs} \PY{o}{=} \PY{l+m+mi}{2}
 \PY{n}{I\PYZus{}d} \PY{o}{=} \PY{n}{u\PYZus{}n}\PY{o}{*}\PY{n}{C\PYZus{}ox}\PY{o}{*}\PY{p}{(}\PY{n}{W}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{V\PYZus{}gs} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}th} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}ds}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{V\PYZus{}ds} 
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{plot\PYZus{}xy}\PY{p}{(}\PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{I\PYZus{}d}\PY{p}{,} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}V\PYZus{}}\PY{l+s+si}{\PYZob{}ds\PYZcb{}}\PY{l+s+s1}{ [V]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}I\PYZus{}d [A]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_01_06_EE538_Lecture1_W2021_files/2021_01_06_EE538_Lecture1_W2021_45_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -905,7 +948,11 @@ I_d \int_0^L{dy} &= \mu \cdot C_{ox} \cdot W  \int_0^{V_{ds}}{[V_{gs} - V_{th} -
 \subsection{First-order I-V characteristics,
 revisited}\label{first-order-i-v-characteristics-revisited}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{NMOS_pinch_off.png}
+\caption{NMOS\_pinch\_off.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -913,17 +960,21 @@ revisited}\label{first-order-i-v-characteristics-revisited}}
   Near the drain region, charge density is dependent on \(V_{gd}\), not
   \(V_{gs}\)
 \item
-  Absence of inversion charge results in high \(E\)-field region, across
-  which the excess \(V_{ds}\) drops
+  The absence of inversion charge in this region results in high
+  \(E\)-field region, across which the excess \(V_{ds}\) drops
 \item
-  Drain current becomes ``saturated,'' no longer increasing with
-  \(V_{ds}\)
+  For \(V_{ds} > V_{gs} - V_{th}\), drain current becomes ``saturated,''
+  no longer increasing with \(V_{ds}\)
 \end{itemize}
 
     \hypertarget{mos-saturation-operation}{%
 \subsection{MOS saturation operation}\label{mos-saturation-operation}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_saturation.png}
+\caption{MOS\_saturation.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -958,7 +1009,7 @@ I_d &= \mu \cdot C_{ox} \cdot \dfrac{W}{L} {\left[(V_{gs} - V_{th}) - \dfrac{V_{
 \begin{itemize}
 \tightlist
 \item
-  For \(V_{ds} << V_{gs} - V_{th}\),
+  For \(V_{ds}\) \textless\textless{} \(V_{gs}-V_{th}\):
 \end{itemize}
 
 \begin{equation}
@@ -978,15 +1029,26 @@ I_d \approx \mu \cdot C_{ox} \cdot \dfrac{W}{L} {(V_{gs} - V_{th})\cdot V_{ds}}
 \boxed{R_{on} = \dfrac{V_{ds}}{I_d} \approx \dfrac{1}{\mu C_{ox} \dfrac{W}{L} (V_{gs} - V_{th})}} 
 \end{equation}
 
+\begin{itemize}
+\tightlist
+\item
+  Though rarely used as an explicitly resistance, the MOS transistor is
+  modeled this way when operated as a switch
+\end{itemize}
+
     \hypertarget{mos-regions-of-operation}{%
 \subsection{MOS regions of operation}\label{mos-regions-of-operation}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_regions.png}
+\caption{MOS\_regions.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
 \item
-  Triode region:
+  Triode region expression:
 \end{itemize}
 
 \begin{equation}
@@ -1000,22 +1062,26 @@ I_d \approx \mu \cdot C_{ox} \cdot \dfrac{W}{L} {(V_{gs} - V_{th})\cdot V_{ds}}
 \end{itemize}
 
 \begin{equation}
-I_d = \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs}-V_{th})^2
+I_d \approx \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs}-V_{th})^2
 \end{equation}
 
     \hypertarget{first-order-mos-model-summary}{%
 \subsection{First-order MOS model
 summary}\label{first-order-mos-model-summary}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_regions_summary.png}
+\caption{MOS\_regions\_summary.png}
+\end{figure}
 
     \hypertarget{mos-i-v-characteristic}{%
 \subsection{MOS I-V characteristic}\label{mos-i-v-characteristic}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{64}{\boxspacing}
+\prompt{In}{incolor}{69}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{def} \PY{n+nf}{nmos\PYZus{}iv}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{)}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{nmos\PYZus{}iv\PYZus{}sweep}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{,} \PY{n}{lmda}\PY{p}{)}\PY{p}{:}
     \PY{n}{u\PYZus{}n} \PY{o}{=} \PY{l+m+mi}{350}                 \PY{c+c1}{\PYZsh{} electron mobility (device parameter)}
     \PY{n}{e\PYZus{}ox} \PY{o}{=} \PY{l+m+mf}{3.9}\PY{o}{*}\PY{l+m+mf}{8.854e\PYZhy{}12}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{;} \PY{c+c1}{\PYZsh{} relative permittivity}
     \PY{n}{t\PYZus{}ox} \PY{o}{=} \PY{l+m+mf}{9e\PYZhy{}9}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{;}          \PY{c+c1}{\PYZsh{} oxide thickness}
@@ -1027,38 +1093,76 @@ summary}\label{first-order-mos-model-summary}}
     
     \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{V\PYZus{}ds}\PY{p}{)}\PY{p}{)}\PY{p}{:}
         \PY{n}{I\PYZus{}d}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{piecewise}\PY{p}{(}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{V\PYZus{}ov}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{V\PYZus{}ov}\PY{p}{]}\PY{p}{,}
-                       \PY{p}{[}\PY{n}{u\PYZus{}n}\PY{o}{*}\PY{n}{C\PYZus{}ox}\PY{o}{*}\PY{p}{(}\PY{n}{W}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{V\PYZus{}gs} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}th} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{p}{,} 
-                        \PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{u\PYZus{}n}\PY{o}{*}\PY{n}{C\PYZus{}ox}\PY{o}{*}\PY{p}{(}\PY{n}{W}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{V\PYZus{}gs} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}th}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)} 
+                       \PY{p}{[}\PY{n}{u\PYZus{}n}\PY{o}{*}\PY{n}{C\PYZus{}ox}\PY{o}{*}\PY{p}{(}\PY{n}{W}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{V\PYZus{}gs} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}th} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{lmda}\PY{o}{*}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{p}{,} 
+                        \PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{u\PYZus{}n}\PY{o}{*}\PY{n}{C\PYZus{}ox}\PY{o}{*}\PY{p}{(}\PY{n}{W}\PY{o}{/}\PY{n}{L}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{V\PYZus{}gs} \PY{o}{\PYZhy{}} \PY{n}{V\PYZus{}th}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{lmda}\PY{o}{*}\PY{n}{V\PYZus{}ds}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)} 
     
     \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{I\PYZus{}d}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{plot\PYZus{}ID\PYZus{}curves}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{,} \PY{n}{lmda}\PY{p}{)}\PY{p}{:}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{10.0}\PY{p}{,}\PY{l+m+mf}{7.5}\PY{p}{)}\PY{p}{)}
+    \PY{k}{for} \PY{n}{vgs} \PY{o+ow}{in} \PY{n}{V\PYZus{}gs}\PY{p}{:}
+        \PY{n}{I\PYZus{}d} \PY{o}{=} \PY{n}{nmos\PYZus{}iv\PYZus{}sweep}\PY{p}{(}\PY{n}{vgs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{,} \PY{n}{lmda}\PY{o}{=}\PY{n}{lmda}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{I\PYZus{}d}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Vgs = }\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{vgs}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}V\PYZus{}}\PY{l+s+si}{\PYZob{}ds\PYZcb{}}\PY{l+s+s1}{ [V]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}I\PYZus{}}\PY{l+s+si}{\PYZob{}D\PYZcb{}}\PY{l+s+s1}{ [mA]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}    
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{65}{\boxspacing}
+\prompt{In}{incolor}{70}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{V\PYZus{}gs} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{V\PYZus{}gs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{step}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{)}
 \PY{n}{V\PYZus{}ds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{step}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{)}
 \PY{n}{W} \PY{o}{=} \PY{l+m+mi}{100}
 \PY{n}{L} \PY{o}{=} \PY{l+m+mi}{1}
-\PY{n}{I\PYZus{}d} \PY{o}{=} \PY{n}{nmos\PYZus{}iv}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{66}{\boxspacing}
+\prompt{In}{incolor}{71}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{plot\PYZus{}xy}\PY{p}{(}\PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{l+m+mf}{1e6}\PY{o}{*}\PY{n}{I\PYZus{}d}\PY{p}{,} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}V\PYZus{}}\PY{l+s+si}{\PYZob{}ds\PYZcb{}}\PY{l+s+s1}{ [V]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}I\PYZus{}d [}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{mu A]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plot\PYZus{}ID\PYZus{}curves}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_01_06_EE538_Lecture1_W2021_files/2021_01_06_EE538_Lecture1_W2021_64_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_64_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    \hypertarget{common-source-amplifier}{%
-\subsection{Common-source amplifier}\label{common-source-amplifier}}
+    \hypertarget{common-source-amplifier-spice-simulation}{%
+\subsection{Common-source amplifier (SPICE
+simulation)}\label{common-source-amplifier-spice-simulation}}
+
+    \begin{figure}
+\centering
+\includegraphics{common_source_sim.png}
+\caption{common\_source\_sim.png}
+\end{figure}
+
+    \hypertarget{calculate-the-gain}{%
+\subsection{Calculate the gain}\label{calculate-the-gain}}
+
+    \begin{align}
+V_o + \Delta V_o &= V_{DD} -  \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs} + \Delta V_i -V_{th})^2 \cdot R_D \\
+\\
+\Delta V_o &= -\dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L} \cdot R_D [(V_{ov} + \Delta V_i)^2 - V_{ov}^2 ] \\
+\\
+&= -\dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L} \cdot R_D [2V_{ov}\Delta V_i + \Delta V_i^2 ] \\
+\\
+&= -\dfrac{2I_d}{V_{ov}} \cdot R_D \Delta V_i \left[1+\dfrac{\Delta V_i}{2V_{ov}}\right ]
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  The output voltage is quadratic in \(\Delta V_i\), but a linear
+  approximation is sufficient for most purposes
+\item
+  Let's use a linear approximation to find the gain\ldots{}
+\end{itemize}
 
     \hypertarget{small-signal-gain}{%
 \subsection{Small-signal gain}\label{small-signal-gain}}
@@ -1091,14 +1195,18 @@ summary}\label{first-order-mos-model-summary}}
 \end{itemize}
 
 \begin{equation}
-A_v = \dfrac{dV_o}{dV_i} \approx -\dfrac{2I_D}{V_{OV}} \cdot R_D 
+A_v = \dfrac{dV_o}{dV_i} \approx -\dfrac{2I_D}{V_{ov}} \cdot R_D 
 \end{equation}
 
     \hypertarget{small-signal-transconductance}{%
 \subsection{Small-signal
 transconductance}\label{small-signal-transconductance}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{SS_transconductance.png}
+\caption{SS\_transconductance.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -1108,14 +1216,18 @@ transconductance}\label{small-signal-transconductance}}
 \item
   As such, the nonlinear function relating \(I_d\) to \(V_{gs}\) is
   replaced with a linear transconductance term, \(g_m\)
+\item
+  Transistor linearization allows us to use linear circuit analysis
+  techniques (i.e.~Kirchoff's laws) to analyze circuits comprising MOS
+  transistors
 \end{itemize}
 
-    \hypertarget{transconductance-versus-square-law}{%
-\subsubsection{Transconductance versus square
-law}\label{transconductance-versus-square-law}}
+    \hypertarget{linear-transconductance-versus-nonlinear-square-law}{%
+\subsubsection{Linear transconductance versus nonlinear square
+law}\label{linear-transconductance-versus-nonlinear-square-law}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{69}{\boxspacing}
+\prompt{In}{incolor}{66}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{nmos\PYZus{}iv}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{)}\PY{p}{:}
     \PY{n}{u\PYZus{}n} \PY{o}{=} \PY{l+m+mi}{350}                 \PY{c+c1}{\PYZsh{} electron mobility (device parameter)}
@@ -1142,9 +1254,9 @@ law}\label{transconductance-versus-square-law}}
     \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{o}{*}\PY{n}{nmos\PYZus{}iv}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{)}\PY{p}{,} 
             \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{mu C\PYZus{}}\PY{l+s+si}{\PYZob{}ox\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{frac}\PY{l+s+si}{\PYZob{}W\PYZcb{}}\PY{l+s+si}{\PYZob{}L\PYZcb{}}\PY{l+s+s1}{(V\PYZus{}}\PY{l+s+si}{\PYZob{}gs\PYZcb{}}\PY{l+s+s1}{\PYZhy{}V\PYZus{}}\PY{l+s+si}{\PYZob{}th\PYZcb{}}\PY{l+s+s1}{)\PYZca{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{I\PYZus{}D1} \PY{o}{=} \PY{n}{nmos\PYZus{}iv}\PY{p}{(}\PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{)}
-    \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{o}{*}\PY{n}{I\PYZus{}D1}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{s}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{o}{*}\PY{n}{I\PYZus{}D1}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{s}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{V\PYZus{}gs\PYZus{}range}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{o}{*}\PY{n}{gm\PYZus{}line}\PY{p}{(}\PY{n}{V\PYZus{}gs\PYZus{}range}\PY{p}{,} \PY{n}{W}\PY{p}{,} \PY{n}{L}\PY{p}{,} \PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{I\PYZus{}D1}\PY{p}{)}\PY{p}{,} 
-            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C1\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}g\PYZus{}mV\PYZus{}}\PY{l+s+si}{\PYZob{}gs\PYZcb{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C3\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}g\PYZus{}mV\PYZus{}}\PY{l+s+si}{\PYZob{}gs\PYZcb{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}V\PYZus{}}\PY{l+s+si}{\PYZob{}gs\PYZcb{}}\PY{l+s+s1}{ [V]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}I\PYZus{}}\PY{l+s+si}{\PYZob{}D\PYZcb{}}\PY{l+s+s1}{ [mA]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
@@ -1153,20 +1265,33 @@ law}\label{transconductance-versus-square-law}}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{70}{\boxspacing}
+\prompt{In}{incolor}{74}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{V\PYZus{}gs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{num}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{)}
-\PY{n}{V\PYZus{}GS1} \PY{o}{=} \PY{l+m+mf}{0.9}
-\PY{n}{V\PYZus{}gs\PYZus{}range} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{V\PYZus{}GS1}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{n}{V\PYZus{}GS1}\PY{o}{+}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
-\PY{n}{plot\PYZus{}gm}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{V\PYZus{}gs\PYZus{}range}\PY{p}{)}
+\PY{n}{V\PYZus{}GS0} \PY{o}{=} \PY{l+m+mf}{0.9}
+\PY{n}{V\PYZus{}gs\PYZus{}range} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{V\PYZus{}GS0}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{n}{V\PYZus{}GS0}\PY{o}{+}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+\PY{n}{plot\PYZus{}gm}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{V\PYZus{}GS0}\PY{p}{,} \PY{n}{V\PYZus{}gs\PYZus{}range}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_01_06_EE538_Lecture1_W2021_files/2021_01_06_EE538_Lecture1_W2021_73_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_76_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    \begin{itemize}
+\tightlist
+\item
+  In the vicinity of the linearization, or ``DC operating'' point, the
+  linear model well-approximates the square law
+\item
+  As \(V_{gs}\) becomes much less or greater than \(V_{GS0}\), a
+  significant error results in using the linear model
+\item
+  For this reason, \(g_m\) is used exclusively as a ``small-signal''
+  approximation for the transistor behavior
+\end{itemize}
+
     \hypertarget{saturation-transconductance}{%
 \subsection{Saturation
 transconductance}\label{saturation-transconductance}}
@@ -1174,12 +1299,12 @@ transconductance}\label{saturation-transconductance}}
     \begin{itemize}
 \tightlist
 \item
-  Transconductance is thus defined as the derivative of drain current
-  with respect to gate-source voltage
+  Transconductance is defined as the derivative of drain current with
+  respect to gate-source voltage
 \end{itemize}
 
 \begin{equation}
-g_m = \dfrac{\partial I_d}{\partial V_{gs}} = \dfrac{\partial}{\partial V_{gs}} \mu C_{ox} \dfrac{W}{L} (V_{gs} - V_{th})^2 = 2\mu C_{ox} \left(\dfrac{W}{L} \right) (V_{gs} - V_{th})
+g_m = \dfrac{\partial I_d}{\partial V_{gs}}\bigg\rvert_{I_d = I_{D0}} = \dfrac{\partial}{\partial V_{gs}} \dfrac{1}{2}\mu C_{ox} \dfrac{W}{L} (V_{gs} - V_{th})^2 \bigg\rvert_{V_{gs} = V_{GS0}}= \mu C_{ox} \left(\dfrac{W}{L} \right) (V_{GS0} - V_{th})
 \end{equation}
 
 \begin{itemize}
@@ -1189,20 +1314,24 @@ g_m = \dfrac{\partial I_d}{\partial V_{gs}} = \dfrac{\partial}{\partial V_{gs}} 
 \end{itemize}
 
 \begin{equation}
-g_m = \dfrac{2I_d}{(V_{gs} - V_{th})} = \dfrac{2I_D}{V_{OV}}
+g_m = \dfrac{2I_{D0}}{(V_{GS0} - V_{th})} = \dfrac{2I_{D0}}{V_{OV}}
 \end{equation}
 
 \begin{itemize}
 \tightlist
 \item
-  Note that for a constant overdrive \(g_m\) is linearly dependent on
-  \(I_d\)
+  Importantly, for a constant overdrive \(g_m\) is linearly dependent on
+  \(I_{D0}\)
 \end{itemize}
 
     \hypertarget{dependence-of-id-on-vds}{%
 \subsection{Dependence of Id on Vds}\label{dependence-of-id-on-vds}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{MOS_regions.png}
+\caption{MOS\_regions.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -1213,15 +1342,20 @@ g_m = \dfrac{2I_d}{(V_{gs} - V_{th})} = \dfrac{2I_D}{V_{OV}}
   The effect is analogous to the Early effect in BJTs
 \item
   The variation of \(I_d\) with \(V_{ds}\) is largely due to a decrease
-  in the effective channel length resulting from the high electric field
-  at the drain, and is typically referred to as ``channel-length
-  modulation''
+  in the effective channel length, resulting from the high electric
+  field at the drain
+\item
+  This effect is typically referred to as ``channel-length modulation''
 \end{itemize}
 
     \hypertarget{channel-length-modulation}{%
 \subsection{Channel-length modulation}\label{channel-length-modulation}}
 
-    
+    \begin{figure}
+\centering
+\includegraphics{channel_length_modulation.png}
+\caption{channel\_length\_modulation.png}
+\end{figure}
 
     \begin{itemize}
 \tightlist
@@ -1236,9 +1370,9 @@ g_m = \dfrac{2I_d}{(V_{gs} - V_{th})} = \dfrac{2I_D}{V_{OV}}
   larger ratio \(\Delta L / L\)
 \end{itemize}
 
-    \hypertarget{square-law-model-with-channel-length-modulation}{%
-\subsection{Square-law model with channel-length
-modulation}\label{square-law-model-with-channel-length-modulation}}
+    \hypertarget{modified-square-law-expression}{%
+\subsection{Modified square-law
+expression}\label{modified-square-law-expression}}
 
     \begin{itemize}
 \tightlist
@@ -1246,32 +1380,69 @@ modulation}\label{square-law-model-with-channel-length-modulation}}
   Finite slope of drain current with repsect to \(V_{ds}\) is typically
   attributed to channel-length modulation
 \item
-  This is actually the result of a combination of various physical
-  effects (DIBL, SCBE, \ldots)
+  However, this is actually the result of a combination of a number of
+  physical effects (DIBL, SCBE, \ldots)
 \item
   A simple model that assumes a linear increase in \(I_d\) with
-  \(V_{ds}\) is generally used, where the combination of effects is
-  lumped into a single parameter, \(\lambda\), inversely proportional to
-  channel length \(L\) (\(\lambda \propto 1/L\))
+  \(V_{ds}\) is generally used to model MOS behavior, where the
+  combination of effects is lumped into a single parameter, \(\lambda\),
+  inversely proportional to channel length \(L\)
+  (\(\lambda \propto 1/L\))
 \item
-  The drain current expression is modified to be
+  The drain current expression is modified as
 \end{itemize}
 
 \begin{equation}
 \boxed{I_d = \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs}-V_{th})^2 (1+\lambda V_{ds})}
 \end{equation}
 
-    \hypertarget{intrinsic-gain}{%
-\subsection{Intrinsic gain}\label{intrinsic-gain}}
+    \hypertarget{i-v-characteristic-with-channel-length-modulation}{%
+\subsection{I-V characteristic with channel-length
+modulation}\label{i-v-characteristic-with-channel-length-modulation}}
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{73}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plot\PYZus{}ID\PYZus{}curves}\PY{p}{(}\PY{n}{V\PYZus{}gs}\PY{p}{,} \PY{n}{V\PYZus{}ds}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{05}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_89_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
     
+    \begin{itemize}
+\tightlist
+\item
+  The inclusion of \(\lambda\) in the square-law model results in a
+  finite slope of the \(I_d\) vs \(V_{ds}\) curves
+\item
+  This dependence of \(I_d\) on \(V_{ds}\) is referred to as the
+  transistor \emph{output resistance}, which is determined by taking the
+  derivative of \(I_d\) with respect to \(V_{ds}\):
+\end{itemize}
+
+\begin{equation}
+r_o = \left(\dfrac{d}{dV_{ds}}I_d \right)^{-1}\bigg\rvert_{I_d = I_{D0}} =  \dfrac{1}{\lambda \cdot \dfrac{1}{2}\mu\cdot C_{ox} \cdot \dfrac{W}{L}(V_{gs}-V_{th})^2}\bigg\rvert_{V_{gs} = V_{GS0}} = \dfrac{1}{\lambda I_{D0}}
+\end{equation}
+
+    \hypertarget{mos-dc-model-intrinsic-gain}{%
+\subsection{MOS DC model (intrinsic
+gain)}\label{mos-dc-model-intrinsic-gain}}
+
+    \begin{figure}
+\centering
+\includegraphics{MOS_intrinsic_gain.png}
+\caption{MOS\_intrinsic\_gain.png}
+\end{figure}
 
     \begin{equation}
-g_m = \dfrac{2I_D}{V_{OV}}
+g_m = \dfrac{2I_{D0}}{V_{OV}}
 \end{equation}
 
 \begin{equation}
-r_o = \dfrac{1}{g_{ds}} = \dfrac{1}{\lambda I_D}
+r_o = \dfrac{1}{g_{ds}} = \dfrac{1}{\lambda I_{D0}}
 \end{equation}
 
 \begin{equation}
@@ -1282,14 +1453,15 @@ r_o = \dfrac{1}{g_{ds}} = \dfrac{1}{\lambda I_D}
 \tightlist
 \item
   The dependence of \(I_d\) on \(V_{ds}\) is modeled as a resistance
-  \(r_o\), referred to as the transistor output impedance, which is
-  linearly dependent on \(I_d\)
+  \(r_o\), referred to as the transistor \emph{output impedance}, which
+  is linearly dependent on \(I_d\)
 \item
   The product \(g_m \cdot r_o\) is called the intrinsic gain of the
   MOSFET, which is, to first order, independent of drain current
 \item
   As we will see, intrinsic gain is a fundamental device property that
-  affects a number of circuit performance metrics (e.g.~voltage gain)
+  affects a number of circuit performance metrics (e.g.~voltage gain of
+  an amplifier)
 \end{itemize}
 
     \hypertarget{level-1-nmospmos-spice-models}{%
@@ -1326,8 +1498,8 @@ MJ = 0.5 & MJSW = 0.3 & CGDO = 0.3e-9 & JS = 0.5e-8\tabularnewline
     \begin{itemize}
 \tightlist
 \item
-  The model discussed is often referred to as the ``long-channel'' or
-  ``square-law'' model
+  The model discussed here is often referred to as the ``long-channel''
+  or ``square-law'' model
 \item
   Although it is intuitively satisfying and readily applied
   analytically, it is grossly inadequate for modeling modern
@@ -1339,10 +1511,9 @@ MJ = 0.5 & MJSW = 0.3 & CGDO = 0.3e-9 & JS = 0.5e-8\tabularnewline
   However, the long-channel model is useful for gaining intuition and
   understanding general performance trends
 \item
-  A rule of thumb is useful here:
+  A rule of thumb is useful here: \textbf{Use the simplest model that is
+  accurate enough for the task}
 \end{itemize}
-
-\emph{Use the simplest model that is accurate enough for the task}
 
     \hypertarget{summary}{%
 \subsection{Summary}\label{summary}}
