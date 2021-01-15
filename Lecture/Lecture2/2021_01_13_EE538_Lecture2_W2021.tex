@@ -384,7 +384,7 @@ Design}\label{ee-538-analog-integrated-circuit-design}}
 \subsection{Python packages/modules}\label{python-packagesmodules}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{37}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
 \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k+kn}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
@@ -481,6 +481,31 @@ Design}\label{ee-538-analog-integrated-circuit-design}}
 \section{Lecture 2 - Single-Stage MOS
 Amplifiers}\label{lecture-2---single-stage-mos-amplifiers}}
 
+    \hypertarget{announcements}{%
+\subsection{Announcements}\label{announcements}}
+
+    \begin{itemize}
+\tightlist
+\item
+  Assignment 1 posted, due Sunday January 17
+
+  \begin{itemize}
+  \tightlist
+  \item
+    PDF submission on Canvas
+  \end{itemize}
+\item
+  Office hours
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Thursdays at 7pm (Jason)
+  \item
+    Fridays at 7pm (Thushara)
+  \end{itemize}
+\end{itemize}
+
     \hypertarget{week-2}{%
 \subsection{Week 2}\label{week-2}}
 
@@ -546,7 +571,7 @@ Amplifiers}\label{lecture-2---single-stage-mos-amplifiers}}
       Active load
     \end{itemize}
   \item
-    Basic current mirror
+    Basic current mirrors
   \end{itemize}
 \end{itemize}
 
@@ -823,7 +848,7 @@ G_m = \dfrac{i_{sc}}{v_i} = \dfrac{g_m \cdot v_i}{v_i}= g_m
 \end{itemize}
 
 \begin{equation}
-i_t = v_t \cdot \left(\dfrac{1}{r_o} + \dfrac{1}{R_d} \right)
+i_t = v_t \cdot \left(\dfrac{1}{r_o} + \dfrac{1}{R_D} \right)
 \end{equation}
 
 \begin{itemize}
@@ -834,6 +859,16 @@ i_t = v_t \cdot \left(\dfrac{1}{r_o} + \dfrac{1}{R_d} \right)
 
 \begin{equation}
 R_o = \dfrac{v_t}{i_t} = \left(\dfrac{1}{r_o}+ \dfrac{1}{R_D} \right)^{-1} = \boxed{r_o || R_D}
+\end{equation}
+
+\begin{itemize}
+\tightlist
+\item
+  The voltage gain is thus
+\end{itemize}
+
+\begin{equation}
+-G_m \cdot R_o = -g_m \cdot r_o || R_D
 \end{equation}
 
     \hypertarget{relative-magnitudes-of-rd-and-ro}{%
@@ -956,8 +991,8 @@ r_o = \dfrac{1}{g_{ds}} = \dfrac{1}{\lambda I_{D0}}
   In order to maximize signal swing, we want to use a relatively low
   overdrive voltage (\(V_{ov} = V_{GS} - V_{th}\))
 \item
-  Assuming a gate bias of \(V_{GS} = 0.9V\) (for example), the intrinsic
-  gain is given as
+  Assuming a gate bias of \(V_{GS0} = 0.9V\) (for example), the
+  intrinsic gain is given as
 \end{itemize}
 
 \begin{equation}
@@ -1080,11 +1115,12 @@ A_v = \dfrac{v_o}{v_i} = -g_{m1} \cdot (r_{o1} || r_{o2})
 \begin{itemize}
 \tightlist
 \item
-  Using our Level 1 process parameters, this becomes
+  Using our Level 1 process parameters
+  (\(\lambda_n = 0.1, \lambda_p = 0.2\)), this becomes
 \end{itemize}
 
 \begin{equation}
-A_v = -g_{m1} \cdot (r_{o1} || r_{o2}) = -g_{m1}\cdot r_{o1} \dfrac{r_{o2}}{r_{o1} + r_{o2}}\approx 33 V/V
+A_v = -g_{m1} \cdot (r_{o1} || r_{o2}) = -g_{m1}\cdot r_{o1} \dfrac{r_{o2}}{r_{o1} + r_{o2}}\approx -33 V/V
 \end{equation}
 
 \begin{itemize}
@@ -1105,7 +1141,7 @@ A_v = -g_{m1} \cdot (r_{o1} || r_{o2}) = -g_{m1}\cdot r_{o1} \dfrac{r_{o2}}{r_{o
 \end{itemize}
 
 \begin{equation}
-V_o < V_{DD} - V_{BP} - |V_{thp}|
+V_o < V_{DD} - (V_{DD}  - V_{BP} + |V_{thp}|) = V_{BP} - |V_{thp}|
 \end{equation}
 
 \begin{itemize}
@@ -1116,7 +1152,7 @@ V_o < V_{DD} - V_{BP} - |V_{thp}|
 \end{itemize}
 
 \begin{equation}
-V_o > V_i - V_{th}
+V_o > V_{GS1} - V_{thn}
 \end{equation}
 
 \begin{itemize}
@@ -1126,11 +1162,14 @@ V_o > V_i - V_{th}
 \end{itemize}
 
 \begin{equation}
-V_i - V_{thn} < V_o < V_{DD} - V_{BP} - |V_{thp}|
+V_{GS1} - V_{thn} < V_o < V_{BP} - |V_{thp}|
 \end{equation}
 
 \begin{itemize}
 \tightlist
+\item
+  One way to look at this is to say the output swing is
+  \(V_{DD} - 2V_{OV}\)
 \item
   Again to maximize use of this range we would like to set the operating
   point of \(V_o\) to approximately \(V_{DD}/2\)
@@ -1139,7 +1178,7 @@ V_i - V_{thn} < V_o < V_{DD} - V_{BP} - |V_{thp}|
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plot\PYZus{}cs\PYZus{}op\PYZus{}point}\PY{p}{(}\PY{n}{V\PYZus{}DD}\PY{p}{,} \PY{n}{V\PYZus{}BP}\PY{p}{,} \PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{V\PYZus{}out}\PY{p}{)}\PY{p}{:}
     \PY{n}{I\PYZus{}d1} \PY{o}{=} \PY{n}{nmos\PYZus{}iv\PYZus{}sweep}\PY{p}{(}\PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{V\PYZus{}out}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
@@ -1165,7 +1204,8 @@ V_i - V_{thn} < V_o < V_{DD} - V_{BP} - |V_{thp}|
   are approximately in the middle of their saturation ranges and the
   output voltage is \textasciitilde{}\(V_{DD}/2\)
 \item
-  However, if \(V_{GS1}\) is changed slightly, the resulting operating
+  However, if \(V_{GS1}\) is changed slightly (or if device parameters
+  differ due to manufacturing variability), the resulting operating
   point can place either \(M_1\) or \(M_2\) in triode, drastically
   decreasing the gain
 \item
@@ -1174,18 +1214,18 @@ V_i - V_{thn} < V_o < V_{DD} - V_{BP} - |V_{thp}|
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{36}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{V\PYZus{}DD} \PY{o}{=} \PY{l+m+mi}{3}
 \PY{n}{V\PYZus{}BP} \PY{o}{=} \PY{l+m+mi}{2}
-\PY{n}{V\PYZus{}GS1} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{9}
+\PY{n}{V\PYZus{}GS1} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{86} 
 \PY{n}{V\PYZus{}out} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{n}{step}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{)}
 \PY{n}{plot\PYZus{}cs\PYZus{}op\PYZus{}point}\PY{p}{(}\PY{n}{V\PYZus{}DD}\PY{p}{,} \PY{n}{V\PYZus{}BP}\PY{p}{,} \PY{n}{V\PYZus{}GS1}\PY{p}{,} \PY{n}{V\PYZus{}out}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_01_13_EE538_Lecture2_W2021_files/2021_01_13_EE538_Lecture2_W2021_60_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_01_13_EE538_Lecture2_W2021_files/2021_01_13_EE538_Lecture2_W2021_62_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1212,7 +1252,7 @@ A_v = \dfrac{v_o}{v_i} = -g_{m1}\cdot r_{o1}||r_{o2}
 \begin{itemize}
 \tightlist
 \item
-  where \(g_{m1} = 2I_{D1}/V_{OV1}\), \(r_{o1} = 1/\lambda_n I_{D1}\),
+  where \(g_{m1} = 2I_{D1}/V_{OV1}\), \(r_{o2} = 1/\lambda_n I_{D1}\),
   \(r_{o1} = 1/\lambda_p I_{D2}\), and \(I_{D1} = I_{D2}\)
 \item
   \(I_{D2}\) (\(I_{D1}\)) constitutes the \(DC\) operating point of the
@@ -1233,7 +1273,7 @@ A_v = \dfrac{v_o}{v_i} = -g_{m1}\cdot r_{o1}||r_{o2}
     \begin{itemize}
 \tightlist
 \item
-  Assuming \(\lambda_p = 0\), if \((W/L)_2\) \$ = (WL)\_3\$,
+  Assuming \(\lambda_p = 0\), if \((W/L)_2\) \$ = (W/L)\_3\$,
 \end{itemize}
 
 \begin{equation}
