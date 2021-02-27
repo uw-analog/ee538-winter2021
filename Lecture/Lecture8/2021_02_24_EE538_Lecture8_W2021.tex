@@ -384,7 +384,7 @@ Design}\label{ee-538-analog-integrated-circuit-design}}
 \subsection{Python packages/modules}\label{python-packagesmodules}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
 \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k+kn}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
@@ -556,6 +556,14 @@ Compensation}\label{lecture-8---stability-and-frequency-compensation}}
     \hypertarget{week-8}{%
 \subsection{Week 8}\label{week-8}}
 
+    \begin{itemize}
+\tightlist
+\item
+  Chapter 6 of Razavi (Frequency Response)
+\item
+  Chapter 10 of Razavi (Stability and Frequency Compensation)
+\end{itemize}
+
     \hypertarget{overview}{%
 \subsection{Overview}\label{overview}}
 
@@ -587,7 +595,7 @@ Compensation}\label{lecture-8---stability-and-frequency-compensation}}
   \item
     Mirror poles
   \item
-    Compensation of two-stage amplifiers
+    Frequency response of two-stage amplifiers
   \end{itemize}
 \end{itemize}
 
@@ -631,7 +639,7 @@ a = A_{0}
 \end{equation}
 
 \begin{equation}
-\dfrac{v_o}{v_i} = \dfrac{A_{0}}{1+\beta A_{0}}
+\dfrac{v_o}{v_i} = \dfrac{A_{0}}{1+\beta A_{0}} \approx \dfrac{1}{\beta}
 \end{equation}
 
     \begin{itemize}
@@ -640,7 +648,7 @@ a = A_{0}
   A fraction of the output voltage (set by \(\beta\)) is fed back to the
   inverting input and the error voltage is processed by the amplifier
 \item
-  Open-loop gain specicification is determined by precision requirements
+  Open-loop gain specification is determined by precision requirements
   (application-dependent)
 \item
   Exact value of DC gain \(A_0\) is unimportant as long as it's ``large
@@ -701,7 +709,7 @@ G(s) = \dfrac{A_{v}(s)}{1+\beta A_{v}(s)} = \dfrac{A_0}{1+s/\omega_0 + \beta A_0
 \end{equation}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plot\PYZus{}CL\PYZus{}freq}\PY{p}{(}\PY{n}{A\PYZus{}dB}\PY{p}{,} \PY{n}{f\PYZus{}t}\PY{p}{,} \PY{n}{betas}\PY{p}{,} \PY{n}{w}\PY{p}{)}\PY{p}{:}
     \PY{n}{A\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{A\PYZus{}dB}\PY{o}{/}\PY{l+m+mi}{20}\PY{p}{)}
@@ -794,7 +802,7 @@ G(s) = \dfrac{\frac{A_0}{1+\beta A_0}}{1+\frac{s}{\omega_0 (1+\beta A_0)}}
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{betas} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
 \PY{n}{w} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{num}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
@@ -803,7 +811,7 @@ G(s) = \dfrac{\frac{A_0}{1+\beta A_0}}{1+\frac{s}{\omega_0 (1+\beta A_0)}}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_02_24_EE538_Lecture8_W2021_files/2021_02_24_EE538_Lecture8_W2021_27_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_02_24_EE538_Lecture8_W2021_files/2021_02_24_EE538_Lecture8_W2021_28_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1064,7 +1072,7 @@ system}\label{phase-margin-of-a-two-pole-system}}
 \end{itemize}
 
 \begin{equation}
-A(j\omega_u) > 0^{\circ}
+\angle A(j\omega_u) > 0^{\circ}
 \end{equation}
 
 \begin{itemize}
@@ -1074,7 +1082,11 @@ A(j\omega_u) > 0^{\circ}
 \end{itemize}
 
 \begin{equation}
-A(j\omega_u) \geq 60^{\circ}
+\angle A(j\omega_u) \geq 60^{\circ}
+\end{equation}
+
+\begin{equation}
+PM = \angle A(j\omega_u) = 180^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p1}} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}}
 \end{equation}
 
 \begin{itemize}
@@ -1112,8 +1124,8 @@ amplifier}\label{telescopic-cascode-amplifier}}
   small-signal model
 \item
   The \(3dB\) frequency can be found by ZVTC analysis, but assuming
-  \(C_L >> C_M\), it can be approximated as the product of \(R_o\) and
-  \(C_L\)
+  \(C_L >> C_M\), it can be approximated as the inverse of product of
+  \(R_o\) and \(C_L\)
 \end{itemize}
 
     \hypertarget{m7-diode-connection-small-signal-analysis}{%
@@ -1145,7 +1157,7 @@ i_{up}\left(1+\dfrac{r_{o5}}{r_{o7}(g_{m5}r_{o5}+1)}\right) = v_t\left(g_{m7}+\d
 \end{itemize}
 
 \begin{equation}
-\boxed{R_{up} = \dfrac{v_t}{i_{up}}\approx \dfrac{1}{g_{m7}}}
+\boxed{R_{up} = \dfrac{v_t}{i_{up}}\approx \dfrac{1}{g_{m7}} \approx \dfrac{v_t}{i_t}}
 \end{equation}
 
     \hypertarget{telescopic-amplifier-frequency-response}{%
@@ -1165,7 +1177,7 @@ response}\label{telescopic-amplifier-frequency-response}}
 \end{itemize}
 
 \begin{equation}
-\omega_{p1} \approx \dfrac{1}{g_{m6}r_{o6}r_{o8}||g_{m4}r_{o4}r_{o2}}
+\omega_{p1} \approx \dfrac{1}{g_{m6}r_{o6}r_{o8}||g_{m4}r_{o4}r_{o2} \cdot C_L}
 \end{equation}
 
 \begin{itemize}
@@ -1229,13 +1241,15 @@ A(j\omega_u) \geq 60^{\circ}
 \end{equation}
 
 \begin{itemize}
+\tightlist
 \item
-  If constant bandwidth (\(g_{m1,2}/C_L\)) is assumed, either \(g_{m7}\)
-  or \(C_M\) needs to be minimized to meet this requirement
-\item
-  Both terms can be reduced by reducing \(W_{7,8}\) while keeping \(L\)
-  constant (this will increase \(V_{OV7,8}\))
+  Using the long-channel model, the non-dominant pole can be expressed
+  as
 \end{itemize}
+
+\begin{equation}
+\dfrac{g_{m7}}{C_M} \approx \dfrac{\mu_p C_{ox}\frac{W}{L}V_{OV7,8}}{2\cdot\dfrac{2}{3}WLC_{ox}} = \dfrac{\mu_p V_{OV7,8}}{\dfrac{4}{3}L^2}
+\end{equation}
 
     \hypertarget{frequency-response-of-a-2-stage-amplifier}{%
 \subsection{Frequency response of a 2-stage
@@ -1254,7 +1268,7 @@ amplifier}\label{frequency-response-of-a-2-stage-amplifier}}
 \item
   Here we primarily focus on the second stage, due to the high output
   impedance of the first stage (\(R_{o1} = r_{o2}||r_{o4}\)) and the
-  Miller effect of \(M8\)
+  Miller effect of \(M_8\)
 \item
   The DC gain of the amplifier is given by the product of the gains of
   the individual stages:
@@ -1307,8 +1321,8 @@ A_v(s) &= g_{m1}R_{o1}\dfrac{(sC_{GD} - g_{m8})R_{o2}}{R_{o1} R_{o2}\xi s^2 + [R
     \begin{itemize}
 \tightlist
 \item
-  We can solve for the non-dominant pole by setting the denomator equal
-  to zero and solving for \(s\). This gives
+  We can solve for the non-dominant pole by setting the denominator
+  equal to zero and solving for \(s\). This gives
 \end{itemize}
 
 \begin{equation}
@@ -1444,7 +1458,7 @@ PM &\approx 90^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}} - \tan^{-1}\dfra
 \subsection{Frequency response}\label{frequency-response}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{222}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gm1} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
 \PY{n}{gm8} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
@@ -1452,7 +1466,7 @@ PM &\approx 90^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}} - \tan^{-1}\dfra
 \PY{n}{R\PYZus{}o1} \PY{o}{=} \PY{n}{ro}\PY{o}{/}\PY{l+m+mi}{2} 
 \PY{n}{R\PYZus{}o2} \PY{o}{=} \PY{n}{ro}\PY{o}{/}\PY{l+m+mi}{2}
 \PY{n}{C\PYZus{}GD} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}12}
-\PY{n}{C\PYZus{}GS} \PY{o}{=} \PY{l+m+mf}{2e\PYZhy{}12}
+\PY{n}{C\PYZus{}GS} \PY{o}{=} \PY{o}{.}\PY{l+m+mf}{2e\PYZhy{}12}
 \PY{n}{C\PYZus{}L} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}12}
 \PY{n}{zeta} \PY{o}{=} \PY{n}{C\PYZus{}GS}\PY{o}{*}\PY{n}{C\PYZus{}GD} \PY{o}{+} \PY{n}{C\PYZus{}GS}\PY{o}{*}\PY{n}{C\PYZus{}L}\PY{o}{+}\PY{n}{C\PYZus{}GD}\PY{o}{*}\PY{n}{C\PYZus{}L}
 \PY{n}{num} \PY{o}{=} \PY{p}{[}\PY{n}{C\PYZus{}GD}\PY{o}{*}\PY{n}{R\PYZus{}o2}\PY{o}{*}\PY{n}{gm1}\PY{o}{*}\PY{n}{R\PYZus{}o1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{gm8}\PY{o}{*}\PY{n}{R\PYZus{}o2}\PY{o}{*}\PY{n}{gm1}\PY{o}{*}\PY{n}{R\PYZus{}o1}\PY{p}{]}
@@ -1464,7 +1478,7 @@ PM &\approx 90^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}} - \tan^{-1}\dfra
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{223}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{plot\PYZus{}logxy2}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{mag}\PY{p}{,} \PY{n}{f}\PY{p}{,} \PY{n}{phase}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency [Hz]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Magnitude [dB]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency [Hz]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phase [deg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -1472,7 +1486,7 @@ PM &\approx 90^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}} - \tan^{-1}\dfra
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_02_24_EE538_Lecture8_W2021_files/2021_02_24_EE538_Lecture8_W2021_79_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2021_02_24_EE538_Lecture8_W2021_files/2021_02_24_EE538_Lecture8_W2021_80_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1492,7 +1506,7 @@ PM &\approx 90^{\circ} - \tan^{-1}\dfrac{\omega_u}{\omega_{p2}} - \tan^{-1}\dfra
   closed-loop systems
 \item
   To ensure ``well-behaved'' closed-loop responses, phase margin should
-  be kept above \textasciitilde{}\(60^{\circ}\) (critical damping, no
+  be kept above \textasciitilde{}\(60^{\circ}\) (overdamped, no
   overshoot)
 \item
   Mirror pole can degrade phase margin in single-ended OTAs
